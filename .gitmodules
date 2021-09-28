@@ -1,9 +1,10 @@
-[submodule "lv_demos"]
-	path = lv_demos
-	url = https://github.com/lvgl/lv_demos
-[submodule "lvgl"]
-	path = lvgl
-	url = https://github.com/lvgl/lvgl
-[submodule "lv_drivers"]
-	path = lv_drivers
+
+[submodule "src/lv_drivers"]
+	path = src/lv_drivers
 	url = https://github.com/lvgl/lv_drivers
+[submodule "src/lv_demos"]
+	path = src/lv_demos
+	url = https://github.com/lvgl/lv_demos
+[submodule "src/lvgl"]
+	path = src/lvgl
+	url = https://github.com/lvgl/lvgl
