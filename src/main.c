@@ -13,8 +13,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 #define DISP_BUF_SIZE (128 * 1024)
 
 void terminal_init(){

@@ -353,7 +353,7 @@
  * Mouse or touchpad on PC (using SDL)
  *-------------------------------------*/
 #ifndef USE_MOUSE
-#  define USE_MOUSE           0
+#  define USE_MOUSE           1
 #endif
 
 #if USE_MOUSE
@@ -375,7 +375,7 @@
  * Touchscreen as libinput interface (for Linux based systems)
  *------------------------------------------------*/
 #ifndef USE_LIBINPUT
-#  define USE_LIBINPUT           0
+#  define USE_LIBINPUT           1
 #endif
 
 #if USE_LIBINPUT
@@ -386,7 +386,7 @@
  * Mouse or touchpad as evdev interface (for Linux based systems)
  *------------------------------------------------*/
 #ifndef USE_EVDEV
-#  define USE_EVDEV           0
+#  define USE_EVDEV           1
 #endif
 
 #ifndef USE_BSD_EVDEV
