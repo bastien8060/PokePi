@@ -7,12 +7,19 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 #include <sys/kd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
 
 #define DISP_BUF_SIZE (128 * 1024)
 
 void terminal_init(){
     /* open the framebuffer virtual console */
-    vconsole_fd = open("/dev/tty0", O_RDWR);
+    int vconsole_fd = open("/dev/tty0", O_RDWR);
     if (!vconsole_fd) {
         fprintf(stderr,"Could not open virtual console.\n");
         exit(1);
