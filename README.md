@@ -6,7 +6,11 @@ PokePi Core. A Framework to recognize Pokémon with a Raspberry Pi. A Raspberry 
 Start with fetching all sub-modules:
 
 ```sh
+git clone https://github.com/bastien8060/PokePi
 git submodule update --init --recursive
 ```
+And now you can build it:
 
-...will be written later
+```sh
+make
+```
