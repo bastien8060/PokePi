@@ -5,11 +5,35 @@
 #include <pthread.h>
 #include <time.h>
 #include <sys/time.h>
+#include <sys/ioctl.h>
+#include <sys/kd.h>
 
 #define DISP_BUF_SIZE (128 * 1024)
 
+void terminal_init(){
+    /* open the framebuffer virtual console */
+    vconsole_fd = open("/dev/tty0", O_RDWR);
+    if (!vconsole_fd) {
+        fprintf(stderr,"Could not open virtual console.\n");
+        exit(1);
+    }
+    
+    /* disable blanking on the console by setting the KD_GRAPHICS mode */
+    if (ioctl( vconsole_fd, KDSETMODE, KD_GRAPHICS))
+    {
+        fprintf(stderr,"Could not set virtual console to KD_GRAPHICS mode.\n");
+        exit(1);      
+    }
+
+    close(vconsole_fd);
+
+    /* no chdir and no stdio close */
+    daemon(1,1);
+}
+
 int main(void)
 {
+    terminal_init();
     /*LittlevGL init*/
     lv_init();
 
