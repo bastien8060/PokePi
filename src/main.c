@@ -2,6 +2,7 @@
 #include "lv_drivers/display/fbdev.h"
 #include "lv_drivers/indev/evdev.h"
 #include "lv_demos/lv_demo.h"
+#include "icons/mouse_cursor_icon.c"
 #include <unistd.h>
 #include <pthread.h>
 #include <time.h>
@@ -69,7 +70,14 @@ int main(void)
 	lv_indev_drv_init(&indev_drv);
 	indev_drv.type = LV_INDEV_TYPE_POINTER;
 	indev_drv.read_cb = evdev_read;
-	lv_indev_drv_register(&indev_drv);
+	lv_indev_t *mouse_indev = lv_indev_drv_register(&indev_drv);
+
+    /*Set a cursor for the mouse*/
+    //LV_IMG_DECLARE(mouse_cursor_icon); /*Declare the image file.*/
+    lv_obj_t * cursor_obj = lv_img_create(lv_scr_act()); /*Create an image object for the cursor */
+    lv_img_set_src(cursor_obj, &mouse_cursor_icon);           /*Set the image source*/
+    lv_indev_set_cursor(mouse_indev, cursor_obj); 
+
 
     /*Create a Demo*/
     lv_demo_widgets();
