@@ -61,8 +61,17 @@ int main(void)
     disp_drv.ver_res    = 480;
     lv_disp_drv_register(&disp_drv);
 
+	evdev_init();
+
+	/* Set up touchpad input device interface */
+	lv_indev_drv_t indev_drv;
+	lv_indev_drv_init(&indev_drv);
+	indev_drv.type = LV_INDEV_TYPE_POINTER;
+	indev_drv.read = evdev_read;
+	lv_indev_drv_register(&indev_drv);
+
     /*Create a Demo*/
-    lv_demo_music();
+    lv_demo_widgets();
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {
