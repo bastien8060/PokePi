@@ -80,7 +80,8 @@ int main(void)
 
 
     /*Create a Demo*/
-    lv_demo_music();
+    //lv_demo_music();
+    BuildPages();
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {
