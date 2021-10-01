@@ -2,6 +2,7 @@
 #include "lv_drivers/display/fbdev.h"
 #include "lv_drivers/indev/evdev.h"
 #include "lv_demos/lv_demo.h"
+#include "PokePiCore/PokePi_ui.c"
 #include "icons/mouse_cursor_icon.c"
 #include <unistd.h>
 #include <pthread.h>
