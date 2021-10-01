@@ -2,7 +2,6 @@
 #include "lv_drivers/display/fbdev.h"
 #include "lv_drivers/indev/evdev.h"
 #include "lv_demos/lv_demo.h"
-#include "PokePiCore/PokePi_ui.c"
 #include "icons/mouse_cursor_icon.c"
 #include <unistd.h>
 #include <pthread.h>
@@ -81,8 +80,7 @@ int main(void)
 
 
     /*Create a Demo*/
-    //lv_demo_music();
-    BuildPages();
+    lv_demo_music();
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {
