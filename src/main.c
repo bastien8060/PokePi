@@ -40,7 +40,8 @@ void terminal_init(){
 
 int main(void)
 {
-    terminal_init();
+    terminal_init(); //virtual terminal to make sure lvgl is lvgl is uninterrupted
+
     /*LittlevGL init*/
     lv_init();
 
