@@ -1,7 +1,8 @@
 #include "../../lvgl/lvgl.h"
 #include "../../lv_demos/lv_demo.h"
+#include "../Core/init.c"
 
-extern void PokePi_GUI_init();
+extern void PokePi_GUI_init(void);
 //Inits the first GUI screen upon startup of PokePi. 
 
 

@@ -33,7 +33,9 @@ static void scan_button_event_handler(lv_event_t * e)
 static void exit_button_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
-    LV_LOG_USER("Button %s clicked", lv_msgbox_get_active_btn_text(obj));
+    if (lv_msgbox_get_active_btn_text(obj) == "Exit"){
+        PokePi_Core_exit();
+    }
 }
 
 void PokePi_GUI_init(){
