@@ -1,36 +1,26 @@
 #include "Graphics.h"
 
-static lv_obj_t * kb;
-static lv_obj_t * ta;
-static void kb_event_cb(lv_obj_t * keyboard, lv_event_t e)
+
+static void ta_event_cb(lv_event_t * e)
 {
-    lv_keyboard_def_event_cb(kb, e);
-    if(e == LV_EVENT_CANCEL) {
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t * ta = lv_event_get_target(e);
+    lv_obj_t * kb = lv_event_get_user_data(e);
+    if(code == LV_EVENT_FOCUSED) {
+        lv_keyboard_set_textarea(kb, ta);
+        lv_obj_clear_flag(kb, LV_OBJ_FLAG_HIDDEN);
+    }
+
+    if(code == LV_EVENT_DEFOCUSED) {
         lv_keyboard_set_textarea(kb, NULL);
-        lv_obj_del(kb);
-        kb = NULL;
-    }
-}
-static void kb_create(void)
-{
-    kb = lv_keyboard_create(lv_scr_act(), NULL);
-    lv_keyboard_set_cursor_manage(kb, true);
-    lv_obj_set_event_cb(kb, kb_event_cb);
-    lv_keyboard_set_textarea(kb, ta);
-
-}
-static void ta_event_cb(lv_obj_t * ta_local, lv_event_t e)
-{
-    if(e == LV_EVENT_CLICKED && kb == NULL) {
-        kb_create();
+        lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
     }
 }
 
-static void exit_button_event_handler(lv_obj_t * obj, lv_event_t event)
+static void exit_button_event_cb(lv_event_t * e)
 {
-    if(event == LV_EVENT_VALUE_CHANGED) {
-        printf("Button: %s\n", lv_msgbox_get_active_btn_text(obj));
-    }
+    lv_obj_t * obj = lv_event_get_current_target(e);
+    LV_LOG_USER("Button %s clicked", lv_msgbox_get_active_btn_text(obj));
 }
 
 void PokePi_GUI_init(){
@@ -58,29 +48,33 @@ void PokePi_GUI_init(){
 
     /*Add content to the tabs*/
 
-    lv_obj_t * btn1 = lv_btn_create(tab1, NULL);
-    lv_obj_set_event_cb(btn1, event_handler);
-    lv_obj_align(btn1, NULL, LV_ALIGN_CENTER, 0, -40);
-    label = lv_label_create(btn1, NULL);
+    lv_obj_t * btn1 = lv_btn_create(tab1);
+    lv_obj_add_event_cb(btn1, event_handler, LV_EVENT_ALL, NULL);
+    lv_obj_align(btn1, LV_ALIGN_CENTER, 0, -40);
+    label = lv_label_create(btn1);
     lv_label_set_text(label, "Scan!");
+    lv_obj_center(label);
 
     
-    ta  = lv_textarea_create(tab2, NULL);
-    lv_obj_align(ta, NULL, LV_ALIGN_IN_TOP_MID, 0, LV_DPI / 16);
-    lv_obj_set_event_cb(ta, ta_event_cb);
-    lv_textarea_set_text(ta, "");
-    lv_coord_t max_h = LV_VER_RES / 2 - LV_DPI / 8;
-    if(lv_obj_get_height(ta) > max_h) lv_obj_set_height(ta, max_h);
-    kb_create();
+    lv_obj_t *kb = lv_keyboard_create(tab2);
+    lv_obj_t * ta;
+    ta = lv_textarea_create(tab2);
+    lv_obj_align(ta, LV_ALIGN_TOP_LEFT, 10, 10);
+    lv_obj_add_event_cb(ta, ta_event_cb, LV_EVENT_ALL, kb);
+    lv_textarea_set_placeholder_text(ta, "Welcome To PokePi");
+    lv_obj_set_size(ta, 140, 80);
+    ta = lv_textarea_create(tab2);
+    lv_obj_align(ta, LV_ALIGN_TOP_RIGHT, -10, 10);
+    lv_obj_add_event_cb(ta, ta_event_cb, LV_EVENT_ALL, kb);
+    lv_obj_set_size(ta, 140, 80);
+    lv_keyboard_set_textarea(kb, ta);
 
 
-    static const char * btns[] ={"Exit", "Cancel", ""};
-    lv_obj_t * mbox1 = lv_msgbox_create(tab3, NULL);
-    lv_msgbox_set_text(mbox1, "Are you sure you want to exit PokePi?");
-    lv_msgbox_add_btns(mbox1, btns);
-    lv_obj_set_width(mbox1, 200);
-    lv_obj_set_event_cb(mbox1, exit_button_event_handler);
-    lv_obj_align(mbox1, NULL, LV_ALIGN_CENTER, 0, 0); /*Align to the corner*/
+    static const char * btns[] = {"Exit", "Cancel", ""};
+    lv_obj_t * mbox1 = lv_msgbox_create(tab3, "PokePi", "Are you sure you want to exit?", btns, true);
+    lv_obj_add_event_cb(mbox1, event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_center(mbox1);
+
 
     label = lv_label_create(tab4);
     lv_label_set_text(label, "Forth tab");
