@@ -60,6 +60,7 @@ void PokePi_GUI_init(){
     lv_obj_set_style_bg_opa(tab2, LV_OPA_COVER, 0);
 
     /*Add content to the tabs*/
+    lv_obj_t * label;
 
     lv_obj_t * btn1 = lv_btn_create(tab1);
     lv_obj_add_event_cb(btn1, scan_button_event_handler, LV_EVENT_ALL, NULL);
