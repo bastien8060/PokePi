@@ -17,6 +17,19 @@ static void ta_event_cb(lv_event_t * e)
     }
 }
 
+static void scan_button_event_handler(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+
+    if(code == LV_EVENT_CLICKED) {
+        LV_LOG_USER("Clicked");
+    }
+    else if(code == LV_EVENT_VALUE_CHANGED) {
+        LV_LOG_USER("Toggled");
+    }
+}
+
+
 static void exit_button_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
@@ -49,7 +62,7 @@ void PokePi_GUI_init(){
     /*Add content to the tabs*/
 
     lv_obj_t * btn1 = lv_btn_create(tab1);
-    lv_obj_add_event_cb(btn1, event_handler, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(btn1, scan_button_event_handler, LV_EVENT_ALL, NULL);
     lv_obj_align(btn1, LV_ALIGN_CENTER, 0, -40);
     label = lv_label_create(btn1);
     lv_label_set_text(label, "Scan!");
@@ -72,7 +85,7 @@ void PokePi_GUI_init(){
 
     static const char * btns[] = {"Exit", "Cancel", ""};
     lv_obj_t * mbox1 = lv_msgbox_create(tab3, "PokePi", "Are you sure you want to exit?", btns, true);
-    lv_obj_add_event_cb(mbox1, event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(mbox1, exit_button_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_center(mbox1);
 
 
