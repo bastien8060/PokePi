@@ -3,6 +3,7 @@
 #include "lv_drivers/indev/evdev.h"
 #include "lv_demos/lv_demo.h"
 #include "icons/mouse_cursor_icon.c"
+#include "PokePi/Graphics/Graphics.c"
 #include <unistd.h>
 #include <pthread.h>
 #include <time.h>
@@ -81,7 +82,8 @@ int main(void)
 
 
     /*Create a Demo*/
-    lv_demo_music();
+    //lv_demo_music();
+    PokePi_GUI_init();
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {

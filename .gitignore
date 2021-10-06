@@ -35,7 +35,10 @@
 *.i*86
 *.x86_64
 *.hex
+
+# Remove Files: PokePi, but not folder named PokePi
 PokePi
+!PokePi/
 
 # Debug files
 *.dSYM/
