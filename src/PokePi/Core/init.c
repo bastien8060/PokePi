@@ -40,7 +40,7 @@ void terminal_init(void){
 }
 
 
-void PokePi_Core_exit(){
+void PokePi_Core_exit(void){
     terminal_deinit();
     exit(0);
 }
@@ -95,7 +95,7 @@ void PokePi_Core_init(void)
         usleep(5000);
     }
 
-    return 0;
+    return;
 }
 
 /*Set in lv_conf.h as `LV_TICK_CUSTOM_SYS_TIME_EXPR`*/

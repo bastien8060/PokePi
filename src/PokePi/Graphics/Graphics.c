@@ -1,5 +1,25 @@
 #include "Graphics.h"
 
+void terminal_deinit(void){
+    /* open the framebuffer virtual console */
+    int vconsole_fd = open("/dev/tty0", O_RDWR);
+    if (!vconsole_fd) {
+        fprintf(stderr,"Could not open virtual console.\n");
+        exit(1);
+    }
+    /* disable blanking on the console by setting the KD_GRAPHICS mode */
+    if (ioctl( vconsole_fd, KDSETMODE, KD_TEXT))
+    {
+        fprintf(stderr,"Could not set virtual console to KD_GRAPHICS mode.\n");
+        exit(1);      
+    }
+    close(vconsole_fd);
+}
+
+void PokePi_Core_exit(void){
+    terminal_deinit();
+    exit(0);
+}
 
 static void ta_event_cb(lv_event_t * e)
 {

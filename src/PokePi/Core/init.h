@@ -15,6 +15,7 @@
 #include "../../lv_drivers/indev/evdev.h"
 #include "../../lv_demos/lv_demo.h"
 #include "../../icons/mouse_cursor_icon.c"
+#include "../Graphics/Graphics.c"
 
 
 #define DISP_BUF_SIZE (128 * 1024)
