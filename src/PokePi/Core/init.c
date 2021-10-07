@@ -1,5 +1,4 @@
 #include "init.h"
-#include <stddef.h>
 
 void terminal_deinit(void){
     /* open the framebuffer virtual console */
@@ -88,8 +87,6 @@ void PokePi_Core_init(void)
     lv_indev_set_cursor(mouse_indev, cursor_obj); 
 
 
-    /*Create a Demo*/
-    //lv_demo_music();
     PokePi_GUI_init();
 
     /*Handle LitlevGL tasks (tickless mode)*/

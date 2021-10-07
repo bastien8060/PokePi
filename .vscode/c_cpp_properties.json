@@ -16,7 +16,7 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "NULL"
+                "NULL=(void *)0"
             ],
             "cStandard": "c17",
             "cppStandard": "c++17",
