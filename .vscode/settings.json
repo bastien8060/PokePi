@@ -3,5 +3,4 @@
         "graphics.c": "cpp",
         "mouse_cursor_icon.c": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
 }
