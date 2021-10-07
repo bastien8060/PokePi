@@ -14,4 +14,5 @@
 
 void main(void){
     PokePi_Core_init();
+    return 0;
 }

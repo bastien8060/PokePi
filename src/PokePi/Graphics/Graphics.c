@@ -53,7 +53,7 @@ static void scan_button_event_handler(lv_event_t * e)
 static void exit_button_event_cb(lv_event_t * e)
 {
     lv_obj_t * obj = lv_event_get_current_target(e);
-    if (lv_msgbox_get_active_btn_text(obj) == "Exit"){
+    if (strcmp(lv_msgbox_get_active_btn_text(obj), "Exit")){
         PokePi_Core_exit();
     }
 }
@@ -72,9 +72,9 @@ void PokePi_GUI_init(){
     lv_obj_set_style_border_side(tab_btns, LV_BORDER_SIDE_RIGHT, LV_PART_ITEMS | LV_STATE_CHECKED);
 
     /*Add 3 tabs (the tabs are page (lv_page) and can be scrolled*/
-    lv_obj_t *tab1 = lv_tabview_add_tab(tabview, "Tab 1");
-    lv_obj_t *tab2 = lv_tabview_add_tab(tabview, "Tab 2");
-    lv_obj_t *tab3 = lv_tabview_add_tab(tabview, "Tab 3");
+    lv_obj_t *tab1 = lv_tabview_add_tab(tabview, "Scan");
+    lv_obj_t *tab2 = lv_tabview_add_tab(tabview, "Test");
+    lv_obj_t *tab3 = lv_tabview_add_tab(tabview, "Quit");
     lv_obj_t *tab4 = lv_tabview_add_tab(tabview, "Tab 4");
     lv_obj_t *tab5 = lv_tabview_add_tab(tabview, "Tab 5");
 
