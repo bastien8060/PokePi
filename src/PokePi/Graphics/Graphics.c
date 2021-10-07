@@ -39,7 +39,7 @@ static void exit_button_event_cb(lv_event_t * e)
 }
 
 void PokePi_GUI_init(){
-        /*Create a Tab view object*/
+    /*Create a Tab view object*/
     lv_obj_t *tabview;
     tabview = lv_tabview_create(lv_scr_act(), LV_DIR_LEFT, 80);
     //lv_obj_add_event_cb(lv_tabview_get_content(tabview), scroll_begin_event, LV_EVENT_SCROLL_BEGIN, NULL);
