@@ -25,10 +25,14 @@
 void PokePi_Core_init(void);
 //creates a virtual terminal to prevent anything from interfering with application/framebuffer
 void terminal_init(void);
+
+/*
 //de-locks terminal before exit
 void terminal_deinit(void);
 //exit PokePi and de-init everything 
 void PokePi_Core_exit(void);
+*/
+
 /*Set in lv_conf.h as `LV_TICK_CUSTOM_SYS_TIME_EXPR`
 Custom Tick for LVGL to keep track of time. Used mostly to handle drawing Animations.*/
 uint32_t custom_tick_get(void);

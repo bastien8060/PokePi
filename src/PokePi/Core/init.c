@@ -1,14 +1,15 @@
 #include "init.h"
 
+/*
 void terminal_deinit(void){
-    /* open the framebuffer virtual console */
+    // open the framebuffer virtual console 
     int vconsole_fd = open("/dev/tty0", O_RDWR);
     if (!vconsole_fd) {
         fprintf(stderr,"Could not open virtual console.\n");
         exit(1);
     }
     
-    /* disable blanking on the console by setting the KD_GRAPHICS mode */
+    // disable blanking on the console by setting the KD_GRAPHICS mode 
     if (ioctl( vconsole_fd, KDSETMODE, KD_TEXT))
     {
         fprintf(stderr,"Could not set virtual console to KD_GRAPHICS mode.\n");
@@ -17,6 +18,7 @@ void terminal_deinit(void){
 
     close(vconsole_fd);
 }
+*/
 
 void terminal_init(void){
     /* open the framebuffer virtual console */
@@ -39,11 +41,12 @@ void terminal_init(void){
     daemon(1,1);
 }
 
-
+/*
 void PokePi_Core_exit(void){
     terminal_deinit();
     exit(0);
 }
+*/
 
 void PokePi_Core_init(void)
 {
