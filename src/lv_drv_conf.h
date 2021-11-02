@@ -275,9 +275,11 @@
 #  define USE_FBDEV           1
 #endif
 
+/*
 #if USE_FBDEV
-#  define FBDEV_PATH          "/dev/fb0"
+#  define FBDEV_PATH          g_framebuffer
 #endif
+*/
 
 /*-----------------------------------------
  *  FreeBSD frame buffer device (/dev/fbx)
